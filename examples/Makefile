@@ -2,6 +2,7 @@ SHELL = /bin/sh
 
 clean:
 	@rm -rf pyenv
+	@rm -rf simple/output_tmp
 
 .PHONY: pyenv
 pyenv: clean
@@ -10,8 +11,9 @@ pyenv: clean
 		pip install -r requirements.txt
 
 .PHONY: simple
-simple: pyenv
+simple: clean pyenv
 	. ./pyenv/bin/activate && \
-		cd simple && \
-		python main.py
+		mkdir simple/output_tmp && \
+		cd simple/output_tmp && \
+		python ../main.py
 
