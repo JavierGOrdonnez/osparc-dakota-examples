@@ -2,10 +2,10 @@ environment
     tabular_data
         tabular_data_file
             'dakota_tabular.dat'
-    top_method_pointer = 'SAMPLING'
+    top_method_pointer = 'MULTIOBJ_OPTIMIZATION'
 
     method
-        id_method = 'SAMPLING'
+        id_method = 'MULTIOBJ_OPTIMIZATION'
         moga
             model_pointer = "TRUE_MODEL"
             seed 1234
