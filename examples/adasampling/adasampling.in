@@ -2,15 +2,21 @@ environment
     tabular_data
         tabular_data_file
             'dakota_tabular.dat'
-    top_method_pointer = 'SAMPLING'
+    top_method_pointer = 'ADAPTIVE_SAMPLING'
 
     method
-        id_method = 'SAMPLING'
-        sampling 
-            sample_type lhs
-            samples 10
+        id_method = 'ADAPTIVE_SAMPLING'
+        adaptive_sampling
+            max_iterations 10
+            samples_on_emulator 20
+            fitness_metric gradient
+            initial_samples = 1
             model_pointer = "TRUE_MODEL"
-            seed 1234
+            seed 41
+            batch_selection
+                naive
+            misc_options
+                'batch_size=10'
 
     model
         id_model = 'TRUE_MODEL'
@@ -29,6 +35,7 @@ environment
 
     interface,
         id_interface = 'INTERFACE'
+        batch
         python 
             analysis_drivers
                 'evaluator'
