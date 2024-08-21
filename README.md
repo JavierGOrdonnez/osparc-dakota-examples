@@ -5,6 +5,9 @@ This repository contains the example use cases for
 the [Dakota](https://github.com/snl-dakota/dakota) 
 python module.
 
+It uses a dakota python wheel built by the IT'IS Foundation:
+[IT'IS-Dakota wheel](https://github.com/ITISFoundation/itis-dakota)
+
 Running the example
 -------------------
 
