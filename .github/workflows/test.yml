@@ -9,7 +9,7 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                test-name: ["simple", "adasampling"]
+                test-name: ["simple", "simple_batch", "simple_restart", "adasampling"]
                 python-version: ["3.8", "3.12"]
                 os: ["ubuntu-latest"]
         steps:
