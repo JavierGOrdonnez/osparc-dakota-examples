@@ -6,6 +6,7 @@ clean:
 	@rm -rf simple_restart/output_tmp
 	@rm -rf simple_batch/output_tmp
 	@rm -rf adasampling/output_tmp
+	@rm -rf moga/output_tmp
 
 .PHONY: pyenv
 pyenv: clean
@@ -48,6 +49,13 @@ adasampling: clean pyenv
 	. ./pyenv/bin/activate && \
 		mkdir adasampling/output_tmp && \
 		cd adasampling/output_tmp && \
+		python ../main.py
+
+.PHONY: moga
+moga: clean pyenv
+	. ./pyenv/bin/activate && \
+		mkdir moga/output_tmp && \
+		cd moga/output_tmp && \
 		python ../main.py
 
 .PHONY: module-adasampling
