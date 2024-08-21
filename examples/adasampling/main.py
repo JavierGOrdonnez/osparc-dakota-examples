@@ -22,11 +22,10 @@ def batch_evaluator(batch_input):
 def main():
     print("Starting dakota")
 
-    dakota_conf_path = script_dir / "simple.in"
+    dakota_conf_path = script_dir / "adasampling.in"
     dakota_conf = dakota_conf_path.read_text()
     study = dakenv.study(
-        callbacks={"evaluator": batch_evaluator},
-        input_string=dakota_conf,
+        callbacks={"evaluator": batch_evaluator}, input_string=dakota_conf
     )
 
     study.execute()

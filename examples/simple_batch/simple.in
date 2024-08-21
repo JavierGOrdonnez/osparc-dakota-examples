@@ -10,6 +10,7 @@ environment
             sample_type lhs
             samples 10
             model_pointer = "TRUE_MODEL"
+            seed 1234
 
     model
         id_model = 'TRUE_MODEL'
