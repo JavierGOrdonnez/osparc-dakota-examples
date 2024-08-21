@@ -1,4 +1,4 @@
- Specify the output file for tabular data
+# Specify the output file for tabular data
 environment
     tabular_data
         tabular_data_file
