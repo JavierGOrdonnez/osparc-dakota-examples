@@ -1,0 +1,34 @@
+
+    environment
+        tabular_data
+            tabular_data_file = 'LSH_sampling.dat'
+    
+
+    method
+        id_method = 'SAMPLING'
+        sample_type
+            lhs
+        sampling
+            samples = 800
+            seed = 43
+        model_pointer = "EVALUATOR"
+
+    interface,
+        id_interface = 'EVALUATOR'
+        analysis_drivers = 'template'
+            batch
+            python
+
+    variables
+            continuous_design = 3
+            id_variables = 'VARIABLES'
+                descriptors       'X1' 'X2' 'X3' 
+                initial_point     1.0 0.3 90.0
+                lower_bounds      0.5 0.1 0.0 
+                upper_bounds      1.5 1.0 90.0
+                
+    responses
+        response_functions = 2
+        descriptors = "SUM" "MULT"
+        no_gradients
+        no_hessians
