@@ -1,2 +1,5 @@
 examples/pyenv
 workflows/.venv
+workflows/.pyenv
+output_tmp
+__pycache__

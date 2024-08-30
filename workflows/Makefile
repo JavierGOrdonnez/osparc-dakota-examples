@@ -1,16 +1,16 @@
 SHELL := /bin/bash
 
 # List of example directories
-WORKFLOWS := example
+WORKFLOWS := python_example jupyter_example
 
 # Directory for virtual environment
-VENV_DIR := ".venv"
+VENV_DIR := ".pyenv"
 
 # Clean target
 .PHONY: clean
 clean:
 	@rm -rf $(VENV_DIR)
-	@$(foreach dir,$(EXAMPLES),rm -rf $(dir)/output_tmp;)
+	@$(foreach dir,$(WORKFLOWS),rm -rf $(dir)/output_tmp;)
 	
 # Virtual environment target
 .PHONY: pyenv
@@ -18,9 +18,10 @@ pyenv: clean
 	@python -m venv $(VENV_DIR)
 	@. ./$(VENV_DIR)/bin/activate && pip install -r requirements.txt
 
-# General target for examples
-.PHONY: $(EXAMPLES)
-$(EXAMPLES): clean pyenv
+# General target for WORKFLOWS
+.PHONY: $(WORKFLOWS)
+$(WORKFLOWS): # clean pyenv ## take out line bfr & reactivate this one
+	@$(foreach dir,$(WORKFLOWS),rm -rf $(dir)/output_tmp;) 
 	@. ./$(VENV_DIR)/bin/activate && \
 		mkdir $@/output_tmp && \
 		$(if $(filter simple_restart,$@),cp $@/dakota.rst $@/output_tmp &&) \
@@ -42,4 +43,4 @@ $(EXAMPLES): clean pyenv
 
 # All target
 .PHONY: all
-all: $(EXAMPLES)
+all: $(WORKFLOWS)
