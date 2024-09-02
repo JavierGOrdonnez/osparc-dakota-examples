@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 # List of example directories
-WORKFLOWS := python_example jupyter_example
+WORKFLOWS := python_example jupyter_example sumo_evaluation
 
 # Directory for virtual environment
 VENV_DIR := ".pyenv"

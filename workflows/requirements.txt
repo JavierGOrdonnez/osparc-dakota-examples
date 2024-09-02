@@ -1,7 +1,7 @@
 itis-dakota
 # ipykernel
 numpy
-# pandas 
+pandas 
 # scipy
 # matplotlib
 # statsmodels

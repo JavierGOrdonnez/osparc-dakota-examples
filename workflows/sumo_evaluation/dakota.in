@@ -1,0 +1,43 @@
+
+    environment
+        tabular_data
+            tabular_data_file = 'results.dat'
+    
+
+        model
+            id_model 'SURR_MODEL'
+            surrogate global
+                gaussian_process surfpack
+                
+                cross_validation folds = 10 
+                metrics = "root_mean_squared" "sum_abs" "mean_abs" "max_abs" "rsquared"
+                
+                import_build_points_file 
+                    '/home/ordonez/osparc-services/osparc-dakota-examples/workflows/sumo_evaluation/itrainsample_processed.txt'
+                    custom_annotated header eval_id
+                export_approx_points_file "predictions.dat"
+                export_approx_variance_file "variances.dat"
+        
+
+        variables
+            continuous_design = 18
+            id_variables = 'VARIABLES'
+                descriptors 'Depth' 'Diameter' 'Angle' 'ThicknessSkin' 'ThicknessSct' 'ThicknessAponeurosis' 'ThicknessLooseAreolarTissue' 'ThicknessSkullOuter' 'ThicknessSkullDiploe' 'ThicknessSkullInner' 'ThicknessCsf' 'ConductivitySkin' 'ConductivitySct' 'ConductivityAponeurosis' 'ConductivityLooseAreolarTissue' 'ConductivitySkullCortical' 'ConductivitySkullDiploe' 'ConductivityCsf'
+        
+
+        responses
+            id_responses = 'RESPONSES'
+            descriptors 'AfPeak'
+            objective_functions = 1
+            no_gradients
+            no_hessians
+        
+        method
+            moga
+            output debug
+            max_function_evaluations = 1000000.0
+            max_iterations = 1
+            initialization_type unique_random
+            niching_type radial 0.05 0.05
+            population_size = 2
+        

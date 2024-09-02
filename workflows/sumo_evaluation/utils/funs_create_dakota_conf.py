@@ -162,16 +162,35 @@ def add_evaluation_method(
     input_file: str,
     model_pointer: str = "SURR_MODEL",
 ) -> str:
-    return f"""
+    eval_str = f"""
         method
             id_method "EVALUATION"
             output debug
+            model_pointer '{model_pointer}'
+        """
+    if input_file is not None:
+        eval_str += f"""
             list_parameter_study
                 import_points_file 
                     ## this file should be wo responses!!
                     '{input_file}'
                     custom_annotated header eval_id
-                model_pointer '{model_pointer}'
+        """
+    return eval_str
+
+
+def add_moga_method(
+    max_function_evaluations=1e6, max_iterations=1e6, population_size=64
+):
+    return f"""
+        method
+            moga
+            output debug
+            max_function_evaluations = {max_function_evaluations}
+            max_iterations = {max_iterations}
+            initialization_type unique_random
+            niching_type radial 0.05 0.05
+            population_size = {population_size}
         """
 
 
