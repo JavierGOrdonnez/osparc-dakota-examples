@@ -3,3 +3,5 @@ workflows/.venv
 workflows/.pyenv
 output_tmp
 __pycache__
+*.pyenv
+*.tmp_output
