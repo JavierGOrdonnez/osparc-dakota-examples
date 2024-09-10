@@ -1,0 +1,49 @@
+
+    environment
+        tabular_data
+            tabular_data_file = 'results.dat'
+    
+        method
+            id_method = 'SAMPLING'
+            sample_type
+                lhs
+            sampling
+                samples = 1000
+                seed = 1234
+            
+        
+        model
+            id_model = 'TRUE_MODEL'
+            single
+                interface_pointer = 'INTERFACE'
+                variables_pointer = 'VARIABLES'
+                responses_pointer = 'RESPONSES'
+        
+
+        variables
+            continuous_design = 19
+            id_variables = 'VARIABLES'
+                descriptors 'RELDEPTH' 'DIAMETER' 'ANGLE' 'ELECTRELDEPTH' 'THICKNESS_SKIN' 'THICKNESS_SCT' 'THICKNESS_APONEUROSIS' 'THICKNESS_LOOSE_AREOLAR_TISSUE' 'THICKNESS_SKULL_OUTER' 'THICKNESS_SKULL_DIPLOE' 'THICKNESS_SKULL_INNER' 'THICKNESS_CSF' 'CONDUCTIVITY_SKIN' 'CONDUCTIVITY_SCT' 'CONDUCTIVITY_APONEUROSIS' 'CONDUCTIVITY_LOOSE_AREOLAR_TISSUE' 'CONDUCTIVITY_SKULL_CORTICAL' 'CONDUCTIVITY_SKULL_DIPLOE' 'CONDUCTIVITY_CSF'
+        
+                initial_point     0.5 0.3 90.0 0.5 0.514 0.944 0.247 0.655 1.83 2.84 1.44 3.6 0.148297101 0.077621273 0.079195857 0.079195857 0.00644673 0.09975 1.87899971
+                
+                lower_bounds      0.0 0.1 0.0 0.0 0.19 0.1 0.1 0.2 0.33000000000000007 1.3399999999999999 0.1 2.1 0.021860048999999993 0.001 0.009162149999999994 0.009162149999999994 0.001 0.001 0.001
+                
+                upper_bounds      1.0 1.0 90.0 1.0 0.8380000000000001 1.937 0.55 1.7830000000000001 3.33 4.34 2.94 5.1 0.274734153 0.356867288 0.14922956399999998 0.14922956399999998 0.014051799 0.464536767 3.934222655
+                
+
+        responses
+            id_responses = 'RESPONSES'
+            descriptors 'AFmax_4um' 'GAFmax_4um'
+            objective_functions = 2
+            no_gradients
+            no_hessians
+        
+        interface,
+            id_interface = 'INTERFACE' 
+            
+            python 
+                analysis_drivers
+                    'INTERFACE'
+            
+        
