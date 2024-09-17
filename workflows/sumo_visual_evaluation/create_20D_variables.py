@@ -12,11 +12,11 @@ GEOMETRIC_VARIABLES = {
         "lower_bound": 0.1,
         "upper_bound": 1.0,
     },
-    # "POSITION": {
-    #     "initial_point": -14.0,
-    #     "lower_bound": -21.0,
-    #     "upper_bound": 21.0,
-    # },
+    "POSITION": {
+        "initial_point": -14.0,
+        "lower_bound": -21.0,
+        "upper_bound": 21.0,
+    },
     "ANGLE": {
         "initial_point": 90.0,
         "lower_bound": 0.0,
