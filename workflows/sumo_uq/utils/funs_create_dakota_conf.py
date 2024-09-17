@@ -135,7 +135,7 @@ def add_surrogate_model(
                 '''}
                 import_build_points_file 
                     '{training_samples_file}'
-                    custom_annotated header eval_id
+                    custom_annotated header use_variable_labels eval_id 
                 export_approx_points_file "predictions.dat"
                 {'export_approx_variance_file "variances.dat"' if "gaussian_process" in surrogate_type else ""}
         """
@@ -154,7 +154,7 @@ def add_sampling_method(
                 {method}
             sampling
                 samples = {num_samples}
-                seed = {seed}
+                {f'seed = {seed}' if seed is not None else ""}
             {f'model_pointer = "{model_pointer}"' if model_pointer is not None else ""}
         """
 

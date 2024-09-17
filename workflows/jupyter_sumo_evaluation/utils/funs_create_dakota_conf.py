@@ -162,6 +162,7 @@ def add_sampling_method(
 def add_evaluation_method(
     input_file: str,
     model_pointer: str = "SURR_MODEL",
+    includes_eval_id: bool = False,
 ) -> str:
     eval_str = f"""
         method
@@ -175,7 +176,7 @@ def add_evaluation_method(
                 import_points_file 
                     ## this file should be wo responses!!
                     '{input_file}'
-                    custom_annotated header eval_id
+                    custom_annotated header {'eval_id' if includes_eval_id else ''}
         """
     return eval_str
 

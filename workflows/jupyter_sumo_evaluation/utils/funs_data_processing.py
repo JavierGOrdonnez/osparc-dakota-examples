@@ -94,6 +94,8 @@ def process_input_file(
     columns_to_remove: List[str] = ["interface"],
     N: Optional[int] = None,
     keep_idxs: Optional[List[int]] = None,
+    filter_highest_N: Optional[int] = None,
+    output_variable: Optional[str] = None,
 ) -> str:
     if isinstance(files, (str, Path)):
         files = [files]
@@ -111,6 +113,10 @@ def process_input_file(
 
     # allows to only take the first N rows
     df = df.iloc[:N] if N is not None else df
+
+    if filter_highest_N is not None:
+        output_variable = df.columns[-1] if output_variable is None else output_variable
+        df = df.sort_values(by=output_variable, ascending=False).iloc[filter_highest_N:]
 
     ## allow to only keep certain idxs
     if keep_idxs is not None:
