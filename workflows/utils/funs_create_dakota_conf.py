@@ -34,7 +34,7 @@ def add_adaptive_sampling(
         s += f"""
             import_build_points_file 
             "{training_samples_file}"
-            {"custom_annotated header eval_id" if "_processed.txt" in training_samples_file else ""}  # only if processed file
+            {"custom_annotated header use_variable_labels eval_id" if "_processed.txt" in training_samples_file else ""}  # only if processed file
             """
     else:
         raise ValueError("Training samples file must be provided for adaptive sampling")
@@ -167,7 +167,6 @@ def add_evaluation_method(
     eval_str = f"""
         method
             id_method "EVALUATION"
-            output debug
             model_pointer '{model_pointer}'
         """
     if input_file is not None:
@@ -187,7 +186,6 @@ def add_moga_method(
     return f"""
         method
             moga
-            output debug
             max_function_evaluations = {max_function_evaluations}
             max_iterations = {max_iterations}
             initialization_type unique_random
