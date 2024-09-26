@@ -2,10 +2,10 @@ import pathlib as pl
 import sys
 
 script_dir = pl.Path(__file__).parent
-sys.path.append(script_dir)
+sys.path.append(script_dir.parent)
 import utils
 from utils import funs_create_dakota_conf
-from create_20D_variables import VARIABLES_DF
+from workflows.utils.create_20D_variables import VARIABLES_DF
 
 
 def create_dakota_conf(dakota_conf_path):
