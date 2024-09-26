@@ -104,6 +104,7 @@ def add_interface_s4l(n_jobs: int = 2, id_model="S4L_MODEL") -> str:
 
 
 def add_responses(descriptors=["-AFpeak"]) -> str:
+    descriptors = descriptors if isinstance(descriptors, list) else [descriptors]
     return f"""
 
         responses
@@ -134,7 +135,7 @@ def add_surrogate_model(
                 '''}
                 import_build_points_file 
                     '{training_samples_file}'
-                    custom_annotated header eval_id
+                    custom_annotated header use_variable_labels eval_id 
                 export_approx_points_file "predictions.dat"
                 {'export_approx_variance_file "variances.dat"' if "gaussian_process" in surrogate_type else ""}
         """
@@ -153,7 +154,7 @@ def add_sampling_method(
                 {method}
             sampling
                 samples = {num_samples}
-                seed = {seed}
+                {f'seed = {seed}' if seed is not None else ""}
             {f'model_pointer = "{model_pointer}"' if model_pointer is not None else ""}
         """
 
@@ -161,6 +162,7 @@ def add_sampling_method(
 def add_evaluation_method(
     input_file: str,
     model_pointer: str = "SURR_MODEL",
+    includes_eval_id: bool = False,
 ) -> str:
     eval_str = f"""
         method
@@ -174,9 +176,24 @@ def add_evaluation_method(
                 import_points_file 
                     ## this file should be wo responses!!
                     '{input_file}'
-                    custom_annotated header eval_id
+                    custom_annotated header {'eval_id' if includes_eval_id else ''}
         """
     return eval_str
+
+
+def add_moga_method(
+    max_function_evaluations=1e6, max_iterations=1e6, population_size=64
+):
+    return f"""
+        method
+            moga
+            output debug
+            max_function_evaluations = {max_function_evaluations}
+            max_iterations = {max_iterations}
+            initialization_type unique_random
+            niching_type radial 0.05 0.05
+            population_size = {population_size}
+        """
 
 
 def add_evaluator_model(
